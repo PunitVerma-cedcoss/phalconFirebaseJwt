@@ -27,7 +27,8 @@ class Notificationslistener extends Injectable
             }
             // call validator of token
             $validator = new \App\Components\JwtInit();
-            $resp = $validator->jwtValidate($role);
+            // $resp = $validator->jwtValidate($role);
+            $resp = $validator->firebaseJwtValidate($role);
             if ($resp) {
                 if (is_file($aclFile)) {
                     $acl = unserialize(file_get_contents($aclFile));

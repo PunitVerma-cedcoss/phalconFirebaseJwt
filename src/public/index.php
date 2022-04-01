@@ -22,8 +22,6 @@ use Phalcon\Acl\Role;
 use Phalcon\Acl\Component;
 use Phalcon\Mvc\Router;
 
-
-
 $config = new Config([]);
 
 // Define some absolute path constants to aid in locating resources
@@ -108,6 +106,14 @@ $container->set(
     function () {
         $now = new DateTimeImmutable();
         return $now;
+    }
+);
+
+$container->set(
+    'translator',
+    function () {
+        $transComponentObject = new App\Components\LocaleComponent();
+        return $transComponentObject;
     }
 );
 

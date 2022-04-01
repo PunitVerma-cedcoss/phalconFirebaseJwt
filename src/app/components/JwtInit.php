@@ -116,4 +116,31 @@ class JwtInit extends Injectable
         }
         return $resp;
     }
+    public function firebaseJwtValidate($tokenReceived)
+    {
+        try {
+            $key = "QcMpZ&b&mo3TPsPk668J6QH8JA$&U&m2";
+            $decoded = JWT::decode($tokenReceived, new Key($key, 'HS512'));
+            // print_r($decoded);
+            // echo $this->datetime->getTimestamp();
+            if ($this->datetime->getTimestamp() < $decoded->exp) {
+                // echo  "token is valid";
+                if (isset($decoded->sub)) {
+                    // echo "valid token";
+                } else {
+                    // echo "role not found";
+                    die();
+                }
+            } else {
+                $lang  = $this->request->getquery()['locale'] ?? 'en';
+                echo $this->translator->getTranslator($lang)->_("token has expired");
+                // echo "token has expired";
+            }
+        } catch (\Exception $e) {
+            $lang  = $this->request->getquery()['locale'] ?? 'en';
+            echo $this->translator->getTranslator($lang)->_($e->getMessage());
+            die();
+        }
+        // die();
+    }
 }

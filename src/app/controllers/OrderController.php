@@ -8,11 +8,19 @@ class OrderController extends Controller
 {
     public function indexAction()
     {
+        $this->view->token = $this->request->getQuery()['bearer'];
+        $this->assets->addJs('js/lang.js');
+        $lang  = $this->request->getquery()['locale'] ?? 'en';
+        $this->view->t = $this->translator->getTranslator($lang);
         $orders = new GlobalOrders();
         $this->view->data = $orders::find();
     }
     public function addAction()
     {
+        $this->view->token = $this->request->getQuery()['bearer'];
+        $this->assets->addJs('js/lang.js');
+        $lang  = $this->request->getquery()['locale'] ?? 'en';
+        $this->view->t = $this->translator->getTranslator($lang);
         // fetch all products
         $products = new Products();
         $dbData = $products::find();

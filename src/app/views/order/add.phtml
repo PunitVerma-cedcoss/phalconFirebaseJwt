@@ -1,34 +1,50 @@
+<div class="lang fixed top-0 right-0 m-5 bg-white rounded-lg">
+    <div class="dd text-gray-500 capitalize">
+        <p class="p-2 border rounded-lg shadow cursor-pointer">select language <i class="text-lg fa fa-language"></i></p>
+        <div class="dd-content border divide-y rounded-lg m-1 hidden">
+            <a href="/order/add?locale=en&bearer=<?php echo $token; ?>">
+                <p class="p-2 hover:bg-gray-100 cursor-pointer" data="en">English</p>
+            </a>
+            <a href="/order/add?locale=hi&bearer=<?php echo $token; ?>">
+                <p class="p-2 hover:bg-gray-100 cursor-pointer" data="hi">Hindi</p>
+            </a>
+            <a href="/order/add?locale=jp&bearer=<?php echo $token; ?>">
+                <p class="p-2 hover:bg-gray-100 cursor-pointer" data="jp">Japaease</p>
+            </a>
+        </div>
+    </div>
+</div>
 <div class="h-screen w-screen bg-gray-200 flex justify-center items-center">
     <form action="/order/add" method="post" class="text-slate-700 bg-white p-3 rounded-lg shadow-sm w-3/4">
         <div class="flex">
             <div class="w-full mx-1">
                 <label for="name" class="">
-                    <p class="text-md p-1">Customer Name</p>
-                    <input type="text" name="name" placeholder="Customer Name" class="w-full rounded-lg border border-slate-300 shadow" id="" required>
+                    <p class="text-md p-1"><?php echo $t->_("Customer Name"); ?></p>
+                    <input type="text" name="name" placeholder="<?php echo $t->_("Customer Name"); ?>" class="w-full rounded-lg border border-slate-300 shadow" id="" required>
                 </label>
             </div>
             <div class="w-full mx-1">
                 <label for="name" class="">
                     <!-- <span class="bg-indigo-500 p-1 rounded-full mr-1 text-gray-100 text-xs">trending</span> -->
-                    <p class="text-md p-1">Zipcode</p>
-                    <input type="text" name="zipcode" placeholder="Zipcode" class="placeholder:italic w-full rounded-lg border border-slate-300 shadow" id="">
+                    <p class="text-md p-1"><?php echo $t->_("Zipcode"); ?></p>
+                    <input type="text" name="zipcode" placeholder="<?php echo $t->_("Zipcode"); ?>" class="placeholder:italic w-full rounded-lg border border-slate-300 shadow" id="">
                 </label>
             </div>
         </div>
         <div class="flex mt-1">
             <div class="w-full mx-1">
                 <label for="name" class="">
-                    <p class="text-md p-1">Customer Address</p>
-                    <textarea type="text" name="address" placeholder="Customer Address" class="w-full rounded-lg border border-slate-300 shadow" required></textarea>
+                    <p class="text-md p-1"><?php echo $t->_("Customer Address"); ?></p>
+                    <textarea type="text" name="address" placeholder="<?php echo $t->_("Customer Address"); ?>" class="w-full rounded-lg border border-slate-300 shadow" required></textarea>
                 </label>
             </div>
         </div>
         <div class="flex">
             <div class="w-full mx-1">
                 <label for="name" class="">
-                    <p class="text-md p-1">Product</p>
+                    <p class="text-md p-1"><?php echo $t->_("Product"); ?></p>
                     <select name="product" id="" class="w-full rounded-lg border border-slate-300 shadow" required>
-                        <option value="">Select Product</option>
+                        <option value=""><?php echo $t->_("Select Product"); ?></option>
                         <?php
                         foreach ($data as $product) {
                         ?>
@@ -43,8 +59,8 @@
             <div class="w-full mx-1">
                 <label for="name" class="">
                     <!-- <span class="bg-indigo-500 p-1 rounded-full mr-1 text-gray-100 text-xs">trending</span> -->
-                    <p class="text-md p-1">Quantity</p>
-                    <input type="text" name="quantity" placeholder="Quantity" class="w-full rounded-lg border border-slate-300 shadow" id="" required>
+                    <p class="text-md p-1"><?php echo $t->_("Quantity"); ?></p>
+                    <input type="text" name="quantity" placeholder="<?php echo $t->_("Quantity"); ?>" class="w-full rounded-lg border border-slate-300 shadow" id="" required>
                 </label>
             </div>
         </div>
@@ -66,7 +82,10 @@
             }
     ?>
     <div class="flex px-3 pt-3">
-        <button class="w-full p-2 text-gray-100 rounded-lg bg-indigo-500"><i class="fa fa-box text-sm"></i> Make Order</button>
+        <button class="w-full p-2 text-gray-100 rounded-lg bg-indigo-500"><i class="fa fa-box text-sm"></i> <?php echo $t->_("Make Order"); ?></button>
     </div>
     </form>
 </div>
+<?php
+$this->assets->outputJs();
+?>

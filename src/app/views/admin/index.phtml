@@ -1,32 +1,48 @@
+<div class="lang fixed top-0 right-0 m-5 bg-white rounded-lg">
+    <div class="dd text-gray-500 capitalize">
+        <p class="p-2 border rounded-lg shadow cursor-pointer">select language <i class="text-lg fa fa-language"></i></p>
+        <div class="dd-content border divide-y rounded-lg m-1 hidden">
+            <a href="admin?locale=en&bearer=<?php echo $token; ?>">
+                <p class="p-2 hover:bg-gray-100 cursor-pointer" data="en">English</p>
+            </a>
+            <a href="admin?locale=hi&bearer=<?php echo $token; ?>">
+                <p class="p-2 hover:bg-gray-100 cursor-pointer" data="hi">Hindi</p>
+            </a>
+            <a href="admin?locale=jp&bearer=<?php echo $token; ?>">
+                <p class="p-2 hover:bg-gray-100 cursor-pointer" data="jp">Japaease</p>
+            </a>
+        </div>
+    </div>
+</div>
 <div class="layout grid grid-cols-12">
     <div class="sidebar flex flex-col col-span-2 md:col-span-3 lg:col-span-2 h-screen text-gray-200 bg-indigo-500">
         <div class="logo flex justify-center items-center p-3">
             <i class="fa fa-bolt mr-1"></i>
-            <p class="text-xl font-medium lg:text-xl md:text-sm">Punit's Dashboard</p>
+            <p class="text-xl font-medium lg:text-xl md:text-sm"><?php echo $t->_('name-dashboard', ["name" => "punit"]); ?></p>
         </div>
         <div class="tiles grow capitalize">
             <div class="tile p-2">
-                <p class="text-sm text-gray-300 my-2">Dashboard</p>
+                <p class="text-sm text-gray-300 my-2"><?php echo $t->_('dashboard'); ?></p>
                 <a href="#">
                     <div class="tile-option flex bg-white text-indigo-500 p-2 rounded-lg justify-start items-center">
                         <i class="fa fa-box mr-2"></i>
-                        <p>Dashbaord</p>
+                        <p><?php echo $t->_('dashboard'); ?></p>
                     </div>
                 </a>
             </div>
             <div class="tile p-2 text-sm">
-                <p class="text-sm text-gray-300 my-2">Dashboard</p>
+                <p class="text-sm text-gray-300 my-2"><?php echo $t->_('dashboard'); ?></p>
                 <a href="#">
                     <div class="tile-option flex hover:bg-white hover:text-indigo-500 p-2 rounded-lg justify-around items-center">
                         <i class="fa fa-key mr-2"></i>
-                        <p class="grow">set Roles</p>
+                        <p class="grow"><?php echo $t->_('set roles'); ?></p>
                         <i class="fa fa-angle-right text-xs text-white"></i>
                     </div>
                 </a>
                 <a href="#">
                     <div class="tile-option flex hover:bg-white hover:text-indigo-500 p-2 rounded-lg justify-start items-center">
                         <i class="fa fa-users mr-2"></i>
-                        <p>Users Permission</p>
+                        <p><?php echo $t->_('users permissions'); ?></p>
                     </div>
                 </a>
             </div>
@@ -52,7 +68,7 @@
                 <p class="text-4xl text-gray-700 font-bold "><?php
                                                                 echo $data2->count();
                                                                 ?></p>
-                <p class="text-gray-500">permissions</p>
+                <p class="text-gray-500"><?php echo $t->_("permissions"); ?></p>
             </div>
         </div>
         <div class="col-span-12 rounded-lg bg-white mb-2">
@@ -61,7 +77,7 @@
                 foreach ($data2 as $user) {
                 ?>
                     <div class="my-1">
-                        <p class="capitalize"><?php echo $user->role_name; ?> <a href="admin/edit?bearer=<?php echo $token; ?>&name=<?php echo $user->role_name; ?>"><button class="text-white bg-indigo-500 px-2 text-sm rounded-full"><i class="fa fa-edit"></i> Edit</button></a></p>
+                        <p class="capitalize"><?php echo $user->role_name; ?> <a href="admin/edit?bearer=<?php echo $token; ?>&name=<?php echo $user->role_name; ?>"><button class="text-white bg-indigo-500 px-2 text-sm rounded-full"><i class="fa fa-edit"></i> <?php echo $t->_('edit'); ?></button></a></p>
                     </div>
                 <?php
                 }
@@ -70,10 +86,10 @@
         </div>
         <div class="col-span-12 rounded-lg bg-white p-3 shadow-lg">
             <div class="text-gray-600 font-medium">
-                <form action="/admin?role=admin" method="post">
+                <form action="/admin?bearer=<?php echo $token; ?>" method="post">
                     <div class="p-2 flex">
                         <input type="text" name="name" id="" placeholder="enter role name" class="rolename placeholder:text-gray-300 placeholder:italic ml-2 appearance-none rounded-lg border-gray-200" required />
-                        <button class="border rounded-lg px-2 ml-2"><i class="fa fa-eye text-sm"></i> View Roles</button>
+                        <button class="border rounded-lg px-2 ml-2"><i class="fa fa-eye text-sm"></i> <?php echo $t->_('view roles'); ?></button>
                     </div>
                     <?php
                     foreach ($data as $k => $actions) {
@@ -99,7 +115,7 @@
                     }
                     ?>
             </div>
-            <button type="submit" class="p-2 m-2 rounded-lg bg-indigo-500 text-white">Update</button>
+            <button type="submit" class="p-2 m-2 rounded-lg bg-indigo-500 text-white"><?php echo $t->_('update'); ?></button>
             </form>
         </div>
     </div>

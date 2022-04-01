@@ -1,16 +1,32 @@
+<div class="lang fixed top-0 right-0 m-5 bg-white rounded-lg">
+    <div class="dd text-gray-500 capitalize">
+        <p class="p-2 border rounded-lg shadow cursor-pointer">select language <i class="text-lg fa fa-language"></i></p>
+        <div class="dd-content border divide-y rounded-lg m-1 hidden">
+            <a href="/order/add?locale=en&bearer=<?php echo $token; ?>">
+                <p class="p-2 hover:bg-gray-100 cursor-pointer" data="en">English</p>
+            </a>
+            <a href="/order/add?locale=hi&bearer=<?php echo $token; ?>">
+                <p class="p-2 hover:bg-gray-100 cursor-pointer" data="hi">Hindi</p>
+            </a>
+            <a href="/order/add?locale=jp&bearer=<?php echo $token; ?>">
+                <p class="p-2 hover:bg-gray-100 cursor-pointer" data="jp">Japaease</p>
+            </a>
+        </div>
+    </div>
+</div>
 <div class="h-screen w-screen bg-gray-200 flex justify-center items-center">
     <form action="/product/add" method="post" class="text-slate-700 bg-white p-3 rounded-lg shadow-sm w-3/4">
         <div class="flex">
             <div class="w-full mx-1">
                 <label for="name" class="">
-                    <p class="text-md p-1">Name</p>
-                    <input type="text" name="name" placeholder="name" class="w-full rounded-lg border border-slate-300 shadow" id="" required>
+                    <p class="text-md p-1"><?php echo $t->_("Name"); ?></p>
+                    <input type="text" name="name" placeholder="<?php echo $t->_("Name"); ?>" class="w-full rounded-lg border border-slate-300 shadow" id="" required>
                 </label>
             </div>
             <div class="w-full mx-1">
                 <label for="name" class="">
                     <!-- <span class="bg-indigo-500 p-1 rounded-full mr-1 text-gray-100 text-xs">trending</span> -->
-                    <p class="text-md p-1">Tags</p>
+                    <p class="text-md p-1"><?php echo $t->_("Tags"); ?></p>
                     <input type="text" name="tags" placeholder="tags sep comma ," class="placeholder:italic w-full rounded-lg border border-slate-300 shadow" id="" required>
                 </label>
             </div>
@@ -18,23 +34,23 @@
         <div class="flex mt-1">
             <div class="w-full mx-1">
                 <label for="name" class="">
-                    <p class="text-md p-1">Description</p>
-                    <textarea type="text" name="description" placeholder="Description" class="w-full rounded-lg border border-slate-300 shadow" required></textarea>
+                    <p class="text-md p-1"><?php echo $t->_("Description"); ?></p>
+                    <textarea type="text" name="description" placeholder="<?php echo $t->_("Description"); ?>" class="w-full rounded-lg border border-slate-300 shadow" required></textarea>
                 </label>
             </div>
         </div>
         <div class="flex">
             <div class="w-full mx-1">
                 <label for="name" class="">
-                    <p class="text-md p-1">Price</p>
-                    <input type="text" name="price" placeholder="price" class="w-full rounded-lg border border-slate-300 shadow" id="">
+                    <p class="text-md p-1"><?php echo $t->_("Price"); ?></p>
+                    <input type="text" name="price" placeholder="<?php echo $t->_("Price"); ?>" class="w-full rounded-lg border border-slate-300 shadow" id="">
                 </label>
             </div>
             <div class="w-full mx-1">
                 <label for="name" class="">
                     <!-- <span class="bg-indigo-500 p-1 rounded-full mr-1 text-gray-100 text-xs">trending</span> -->
-                    <p class="text-md p-1">Stock</p>
-                    <input type="text" name="stock" placeholder="stock" class="w-full rounded-lg border border-slate-300 shadow" id="">
+                    <p class="text-md p-1"><?php echo $t->_("Stock"); ?></p>
+                    <input type="text" name="stock" placeholder="<?php echo $t->_("Stock"); ?>" class="w-full rounded-lg border border-slate-300 shadow" id="">
                 </label>
             </div>
         </div>
@@ -57,7 +73,10 @@
             echo "<pre>";
     ?>
     <div class="flex px-3 pt-3">
-        <button class="w-full p-2 text-gray-100 rounded-lg bg-indigo-500"><i class="fa fa-plus text-sm"></i> Add Product</button>
+        <button class="w-full p-2 text-gray-100 rounded-lg bg-indigo-500"><i class="fa fa-plus text-sm"></i> <?php echo $t->_("Add Product"); ?></button>
     </div>
     </form>
 </div>
+<?php
+$this->assets->outputJs();
+?>

@@ -10,6 +10,9 @@ class AuthController extends Controller
         $permissions = new Permissions();
         $roleData = $permissions::find();
         $this->view->data = $roleData;
+        $lang  = $this->request->getquery()['locale'] ?? 'en';
+        $this->view->t = $this->translator->getTranslator($lang);
+        $this->assets->addJs('js/lang.js');
         // if got post 
         if ($this->request->isPost()) {
             echo "<pre>";
