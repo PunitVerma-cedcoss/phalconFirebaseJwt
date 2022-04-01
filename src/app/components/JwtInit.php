@@ -64,7 +64,7 @@ class JwtInit extends Injectable
             );
             $jwt = JWT::encode($payload, $key, 'HS512');
             $decoded = JWT::decode($jwt, new Key($key, 'HS512'));
-            print_r($jwt);
+            // print_r($jwt);
             return $jwt;
         }
     }

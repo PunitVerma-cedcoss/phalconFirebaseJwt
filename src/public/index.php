@@ -3,8 +3,6 @@
 // echo "<pre>"; print_r($_SERVER); die;
 // $_SERVER["REQUEST_URI"] = str_replace("/phalt/","/",$_SERVER["REQUEST_URI"]);
 // $_GET["_url"] = "/";
-
-use JetBrains\PhpStorm\Internal\ReturnTypeContract;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
@@ -14,13 +12,14 @@ use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Config;
 use Phalcon\Logger;
 use Phalcon\Logger\Adapter\Stream as AdaStream;
-use Phalcon\Events\Event;
 use Phalcon\Events\Manager as EventsManager;
-use Phalcon\Acl\Adapter\Memory;
-use Phalcon\Acl\Enum;
-use Phalcon\Acl\Role;
-use Phalcon\Acl\Component;
 use Phalcon\Mvc\Router;
+
+use Phalcon\Logger\Adapter\Stream;
+use Phalcon\Logger\AdapterFactory;
+use Phalcon\Logger\LoggerFactory;
+
+
 
 $config = new Config([]);
 
@@ -29,6 +28,7 @@ define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
 
 require_once BASE_PATH . '/vendor/autoload.php';
+
 
 // Register an autoloader
 $loader = new Loader();
@@ -46,7 +46,6 @@ $loader->registerNamespaces(
         'App\Listeners' => APP_PATH . '/listeners'
     ]
 );
-$loader->register();
 
 $loader->register();
 
@@ -117,6 +116,22 @@ $container->set(
     }
 );
 
+//logger
+$container->set(
+    'logger',
+    function () {
+        $adapter = new Stream(BASE_PATH . '/storage/log/main.log');
+        $logger  = new Logger(
+            'messages',
+            [
+                'main' => $adapter,
+            ]
+        );
+        return $logger;
+    }
+);
+
+
 $application = new Application($container);
 
 $eventsManager->fire('application:beforeHandleRequest', $application);
@@ -134,6 +149,8 @@ $container->set(
         );
     }
 );
+
+
 
 // $container->set(
 //     'mongo',

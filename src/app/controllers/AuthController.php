@@ -39,6 +39,13 @@ class AuthController extends Controller
                     ]
                 );
                 $saveresp->save();
+                $this->logger->info("user is being created");
+                $this->logger->info("user created email = " . $this->request->getPost()['email']);
+                $this->logger->info("user created password = " . $this->request->getPost()['password']);
+                $this->logger->info("user created role = " . $this->request->getPost()['selectrole']);
+                $this->logger->info("token assigned : " . $token);
+                $this->logger->info("user is created");
+
                 header("location:/admin?bearer=" . $token);
                 // $this->view->token = $token;
             } else {
