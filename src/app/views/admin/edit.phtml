@@ -7,13 +7,13 @@
     <div class="dd text-gray-500 capitalize">
         <p class="p-2 border rounded-lg shadow cursor-pointer">select language <i class="text-lg fa fa-language"></i></p>
         <div class="dd-content border divide-y rounded-lg m-1 hidden">
-            <a href="edit?locale=en&bearer=<?php echo $token; ?>">
+            <a href="edit?locale=en&bearer=<?php echo $token; ?>&name=<?php echo $name; ?>">
                 <p class="p-2 hover:bg-gray-100 cursor-pointer" data="en">English</p>
             </a>
-            <a href="edit?locale=hi&bearer=<?php echo $token; ?>">
+            <a href="edit?locale=hi&bearer=<?php echo $token; ?>&name=<?php echo $name; ?>">
                 <p class="p-2 hover:bg-gray-100 cursor-pointer" data="hi">Hindi</p>
             </a>
-            <a href="edit?locale=jp&bearer=<?php echo $token; ?>">
+            <a href="edit?locale=jp&bearer=<?php echo $token; ?>&name=<?php echo $name; ?>">
                 <p class="p-2 hover:bg-gray-100 cursor-pointer" data="jp">Japaease</p>
             </a>
         </div>

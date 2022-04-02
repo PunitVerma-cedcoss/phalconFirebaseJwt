@@ -20,7 +20,6 @@ use Phalcon\Logger\AdapterFactory;
 use Phalcon\Logger\LoggerFactory;
 
 
-
 $config = new Config([]);
 
 // Define some absolute path constants to aid in locating resources
@@ -107,14 +106,42 @@ $container->set(
         return $now;
     }
 );
+//cache container
+// $container->setShared(
+//     'cache',
+//     function () {
+//         $cache = new \App\Components\CacheComponent();
+//         $cache = $cache->initCache();
+//         return $cache;
+//     }
+// );
+//cache container
+$container->setShared(
+    'cache',
+    function () {
+        $cache = new \App\Components\CacheComponent();
+        $cache = $cache->initCache();
+        return $cache;
+    }
+);
 
 $container->set(
     'translator',
     function () {
-        $transComponentObject = new App\Components\LocaleComponent();
-        return $transComponentObject;
+        $lang  = $this->getRequest()->getquery()['locale'] ?? 'en';
+        $cache = $this->getCache();
+        if ($cache->has($lang)) {
+            return $cache->get($lang);
+        } else {
+            $transComponentObject = new App\Components\LocaleComponent();
+            $cache->set($lang, $transComponentObject->getTranslator($lang));
+            return $cache->get($lang);
+        }
     }
 );
+
+
+
 
 //logger
 $container->set(

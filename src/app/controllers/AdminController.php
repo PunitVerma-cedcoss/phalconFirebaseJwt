@@ -8,7 +8,7 @@ class AdminController extends Controller
     public function indexAction()
     {
         $lang  = $this->request->getquery()['locale'] ?? 'en';
-        $this->view->t = $this->translator->getTranslator($lang);
+        $this->view->t = $this->translator;
         $this->assets->addJs('js/role.js');
         $this->assets->addJs('js/lang.js');
         $list = new App\Components\Utilscomponent();
@@ -63,7 +63,7 @@ class AdminController extends Controller
     public function editAction()
     {
         $lang  = $this->request->getquery()['locale'] ?? 'en';
-        $this->view->t = $this->translator->getTranslator($lang);
+        $this->view->t = $this->translator;
         $this->assets->addJs('js/lang.js');
         if (isset($this->request->getquery()['name'])) {
             $this->assets->addJs('js/role.js');

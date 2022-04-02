@@ -11,7 +11,7 @@ class OrderController extends Controller
         $this->view->token = $this->request->getQuery()['bearer'];
         $this->assets->addJs('js/lang.js');
         $lang  = $this->request->getquery()['locale'] ?? 'en';
-        $this->view->t = $this->translator->getTranslator($lang);
+        $this->view->t = $this->translator;
         $orders = new GlobalOrders();
         $this->view->data = $orders::find();
     }
@@ -20,7 +20,7 @@ class OrderController extends Controller
         $this->view->token = $this->request->getQuery()['bearer'];
         $this->assets->addJs('js/lang.js');
         $lang  = $this->request->getquery()['locale'] ?? 'en';
-        $this->view->t = $this->translator->getTranslator($lang);
+        $this->view->t = $this->translator;
         // fetch all products
         $products = new Products();
         $dbData = $products::find();

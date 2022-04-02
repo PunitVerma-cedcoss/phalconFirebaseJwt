@@ -10,6 +10,7 @@ class SettingsController extends Controller
         $this->logger->info("some info test");
         $settings = new Settings();
         $this->view->data = $settings::findFirst('1');
+        $this->view->t = $this->translator;
         // IF GOT POST
         if ($this->request->ispost()) {
             $postData = $this->request->getpost();

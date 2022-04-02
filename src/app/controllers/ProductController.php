@@ -9,7 +9,7 @@ class ProductController extends Controller
     {
         $this->view->token = $this->request->getQuery()['bearer'];
         $lang  = $this->request->getquery()['locale'] ?? 'en';
-        $this->view->t = $this->translator->getTranslator($lang);
+        $this->view->t = $this->translator;
         $this->assets->addJs('js/lang.js');
         $product = new Products();
         $this->view->data = $product::find();
@@ -19,7 +19,7 @@ class ProductController extends Controller
         $this->view->token = $this->request->getQuery()['bearer'];
         $this->assets->addJs('js/lang.js');
         $lang  = $this->request->getquery()['locale'] ?? 'en';
-        $this->view->t = $this->translator->getTranslator($lang);
+        $this->view->t = $this->translator;
         // if got post 
         if ($this->request->isPost()) {
             $postData = $this->request->getpost();

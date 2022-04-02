@@ -7,11 +7,11 @@ class AuthController extends Controller
 {
     public function indexAction()
     {
+        // die();
         $permissions = new Permissions();
         $roleData = $permissions::find();
         $this->view->data = $roleData;
-        $lang  = $this->request->getquery()['locale'] ?? 'en';
-        $this->view->t = $this->translator->getTranslator($lang);
+        $this->view->t = $this->translator;
         $this->assets->addJs('js/lang.js');
         // if got post 
         if ($this->request->isPost()) {
