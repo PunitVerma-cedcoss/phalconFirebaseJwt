@@ -7,7 +7,6 @@ class AuthController extends Controller
 {
     public function indexAction()
     {
-        // die();
         $permissions = new Permissions();
         $roleData = $permissions::find();
         $this->view->data = $roleData;
